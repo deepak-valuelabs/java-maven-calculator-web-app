@@ -36,7 +36,7 @@ pipeline {
             steps {
                 sh 'ssh -i /var/lib/jenkins/key.pem -o StrictHostKeyChecking=no centos@10.20.242.34 git clone https://github.com/Dpz94/java-maven-calculator-web-app.git'
                 sh 'ssh -i /var/lib/jenkins/key.pem -o StrictHostKeyChecking=no centos@10.20.242.34 cd java-maven-calculator-web-app'
-                sh 'ssh -i /var/lib/jenkins/key.pem -o StrictHostKeyChecking=no centos@10.20.242.34 mvn jetty:run'
+                sh 'ssh -i /var/lib/jenkins/key.pem -o StrictHostKeyChecking=no centos@10.20.242.34 cd java-maven-calculator-web-app && mvn jetty:run'
             }
         }
     }
