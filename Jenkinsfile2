@@ -20,7 +20,7 @@ pipeline {
         stage ('compile code') {
             when {
               expression {
-                params.deployment == true
+                params.deployment == "true"
                 }
             }   
             steps {
@@ -35,8 +35,8 @@ pipeline {
         stage ('deploy the code') {
             steps {
                 sh 'ssh -i /var/lib/jenkins/key.pem -o StrictHostKeyChecking=no centos@10.20.242.34 git clone https://github.com/Dpz94/java-maven-calculator-web-app.git'
-                sh 'ssh -i /var/lib/jenkins/key.pem -o StrictHostKeyChecking=no centos@10.20.242.34 cd java-maven-calculator-web-app'
-                sh 'ssh -i /var/lib/jenkins/key.pem -o StrictHostKeyChecking=no centos@10.20.242.34 cd java-maven-calculator-web-app && nohup mvn jetty:run'
+                sh 'ssh -i /var/lib/jenkins/key.pem -o StrictHostKeyChecking=no centos@10.20.242.34 cd java-maven-calculator-web-app && mkdir new.txt'
+                sh 'ssh -i /var/lib/jenkins/key.pem -o StrictHostKeyChecking=no centos@10.20.242.34 cd java-maven-calculator-web-app && nohup mvn jetty:run >> new.txt'
             }
         }
     }
