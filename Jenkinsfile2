@@ -25,7 +25,7 @@ pipeline {
         stage ('compile code') {
             when {
               expression {
-                params.action == "compile"
+                params.action == "compile" || params.action == "all"
                 }
             }   
             steps {
@@ -33,11 +33,21 @@ pipeline {
             }
         }
         stage ('package code') {
+            when {
+              expression {
+                params.action == "pacakge" || params.action == "all"
+                }
+            }           
             steps {
                 sh 'mvn package'
             }
         }
         stage ('deploy the code') {
+            when {
+              expression {
+                params.deployment == true
+                }
+            }                
             steps {
               echo "Code has been deployed"
             }
