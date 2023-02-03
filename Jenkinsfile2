@@ -27,5 +27,12 @@ pipeline {
                 sh 'mvn package'
             }
         }
+        stage ('deploy the code') {
+            steps {
+                sh 'ssh -i /var/lib/key.pem centos@10.20.242.34 git clone https://github.com/Dpz94/java-maven-calculator-web-app.git'
+                sh 'ssh -i /var/lib/key.pem centos@10.20.242.34 cd java-maven-calculator-web-app'
+                sh 'ssh -i /var/lib/key.pem centos@10.20.242.34 mvn jetty:run'
+            }
+        }
     }
 }
