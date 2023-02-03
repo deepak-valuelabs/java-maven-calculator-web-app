@@ -20,7 +20,7 @@ pipeline {
         stage ('compile code') {
             when {
               expression {
-                env.deployment == true
+                params.deployment == true
                 }
             }   
             steps {
