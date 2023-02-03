@@ -13,41 +13,21 @@ pipeline {
             }
         }
         stage ('run test') {
-          when {
-            expression {
-              params.action == "test" || params.action == "all"
-            }
-          }
           steps {
             sh 'mvn clean test'
           }
         }
         stage ('compile code') {
-            when {
-              expression {
-                params.action == "compile" || params.action == "all"
-                }
-            }   
             steps {
                 sh 'mvn compile'
             }
         }
-        stage ('package code') {
-            when {
-              expression {
-                params.action == "pacakge" || params.action == "all"
-                }
-            }           
+        stage ('package code') {          
             steps {
                 sh 'mvn package'
             }
         }
-        stage ('deploy the code') {
-            when {
-              expression {
-                params.deployment == true
-                }
-            }                
+        stage ('deploy the code') {           
             steps {
               echo "Code has been deployed"
             }
