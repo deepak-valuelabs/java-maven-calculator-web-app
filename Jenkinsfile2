@@ -13,6 +13,11 @@ pipeline {
             }
         }
         stage ('run test') {
+          when {
+            expression {
+              params.action == test || params.action == all
+            }
+          }
           steps {
             sh 'mvn clean test'
           }
