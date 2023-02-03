@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    stages {
+        stage ('checkout code & verify') {
+            steps {
+                sh 'git checkout'
+                sh 'ls'
+            }            
+        }
+        stage ('verify code present') {
+            steps {
+                sh 'ls'
+            }
+        }
+        stage ('run test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage ('compile code') {
+            steps {
+                sh 'mvn compile'
+            }
+        }
+        stage ('package code') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+    }
+}
